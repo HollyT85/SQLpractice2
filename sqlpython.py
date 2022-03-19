@@ -1,4 +1,5 @@
 import os
+import datetime
 import pymysql
 
 username=os.getenv('C9_USER')
@@ -11,9 +12,8 @@ connection = pymysql.connect(host='localhost',
 
 try:
     with connection.cursor() as cursor:
-        sql="SELECT * from Artist;"
-        cursor.execute(sql)
-        result=cursor.fetchall()
-        print(result)
+        cursor.execute("update Friends set age=22 where name='Bob';")
+        connection.commit()
+        
 finally:
     connection.close()
